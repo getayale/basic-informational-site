@@ -2,6 +2,7 @@ import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import indexRouter from "./routes/indexRouter.js";
+import usersRouter from "./routes/usersRouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,7 +15,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use("/", indexRouter);
-
+app.use("/users", usersRouter);
 
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"));

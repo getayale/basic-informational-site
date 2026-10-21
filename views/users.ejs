@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #9ba7b9;
+      color: #2d3748;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #1e293b;
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    .search-form {
+      background-color: #ac7979;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+      background-color: #9e7a7a;
+      color: white;
+    }
+
+    input::placeholder {
+      color: #f5eeee;
+    }
+
+    input:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    button {
+      background-color: #4f46e5;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4338ca;
+    }
+
+    a {
+      color: #4338ca;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .create-btn {
+      display: inline-block;
+      background-color: #16a34a;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .create-btn:hover {
+      background-color: #15803d;
+      text-decoration: none;
+    }
+
+    .user-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 0;
+      margin: 24px 0;
+      list-style: none;
+    }
+
+    .user-grid li {
+      min-width: 0;
+      list-style: none;
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .user-grid li strong {
+      display: block;
+      font-size: 20px;
+      color: #1e293b;
+      margin-bottom: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .user-grid li p {
+      color: #64748b;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .user-grid li > a {
+      display: inline-block;
+      margin-top: 12px;
+      margin-right: 8px;
+    }
+
+    .delete-form {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      background: none;
+    }
+
+    .delete-btn {
+      background-color: #dc2626;
+      padding: 8px 12px;
+    }
+
+    .delete-btn:hover {
+      background-color: #b91c1c;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+
+      .search-form input {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 6px 0 12px;
+      }
+
+      .search-form label {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1><%= title %></h1>
+
+  <form action="/users/search" method="GET" class="search-form">
+    <label for="name">Search by name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Enter a name"
+      value="<%= name || '' %>"
+    >
+
+    <label for="email">Search by email:</label>
+    <input
+      type="text"
+      id="email"
+      name="email"
+      placeholder="Enter an email"
+      value="<%= email || '' %>"
+    >
+
+    <button type="submit">Search</button>
+    <a href="/users">Clear</a>
+  </form>
+
+  <p>
+    <a href="/users/create" class="create-btn">Create User</a>
+  </p>
+
+  <% if (users.length === 0) { %>
+    <p>No users found.</p>
+  <% } else { %>
+    <ul class="user-grid">
+      <% users.forEach(user => { %>
+        <li>
+          <strong><%= user.firstName %> <%= user.lastName %></strong>
+
+          <div>Email: <%= user.email %></div>
+
+          <% if (user.age !== undefined) { %>
+            <div>Age: <%= user.age %></div>
+          <% } %>
+
+          <% if (user.bio) { %>
+            <p><%= user.bio %></p>
+          <% } %>
+
+          <a href="/users/<%= user.id %>/edit">Edit</a>
+
+          <form
+            action="/users/<%= user.id %>/delete"
+            method="POST"
+            class="delete-form"
+            onsubmit="return confirm('Are you sure you want to delete this user?');"
+          >
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>

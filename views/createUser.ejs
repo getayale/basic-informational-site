@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #9ba7b9;
+      color: #2d3748;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #1e293b;
+      font-size: 32px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .create-form {
+      max-width: 520px;
+      background-color: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .create-form label {
+      display: block;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+
+    .create-form input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #f8fafc;
+      color: #2d3748;
+    }
+
+    .create-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #f8fafc;
+      color: #2d3748;
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .create-form input:focus,
+    .create-form textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .submit-btn {
+      background-color: #4f46e5;
+      color: #ffffff;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #4338ca;
+    }
+
+    .error-list {
+      max-width: 520px;
+      box-sizing: border-box;
+      background-color: #fee2e2;
+      color: #991b1b;
+      padding: 16px 16px 16px 36px;
+      border-radius: 8px;
+      margin: 20px auto 0;
+    }
+
+    .back-link {
+      display: block;
+      width: fit-content;
+      margin: 20px auto 0;
+      color: #4338ca;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .create-form {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1><%= title %></h1>
+
+  <form action="/users/create" method="POST" class="create-form">
+    <label for="firstName">First name</label>
+    <input type="text" id="firstName" name="firstName" required>
+
+    <label for="lastName">Last name</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age" min="18" max="120">
+
+    <label for="bio">Bio</label>
+    <textarea id="bio" name="bio" maxlength="200"></textarea>
+
+    <button type="submit" class="submit-btn">Create User</button>
+  </form>
+
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <a href="/users" class="back-link">View users</a>
+</body>
+</html>
