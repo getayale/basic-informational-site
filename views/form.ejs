@@ -4,6 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+
+
+  <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f4f7fb;
+        margin: 0;
+        padding: 30px 20px;
+        color: #1e293b;
+    }
+
+
+    h1 {
+    text-align: center;
+    color: #0f172a;
+    margin-bottom: 30px;
+}
+
+form {
+    background-color: white;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+form div {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #334155;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #0d9488;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #0f766e;
+}
+
+.cancel-btn {
+    display: inline-block;
+    background-color: #e2e8f0;
+    color: #334155;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+.cancel-btn:hover {
+    background-color: #cbd5e1;
+}
+</style>
 </head>
 <body>
   <h1><%= title %></h1>
@@ -20,6 +97,7 @@
     </div>
 
     <button type="submit">Submit Message</button>
+    <a href="/" class="cancel-btn">Cancel</a>
   </form>
 </body>
 </html>

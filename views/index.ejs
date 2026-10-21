@@ -8,7 +8,62 @@
     body{
         font-family: Arial, Helvetica, sans-serif;
           background-color: #f4f7fb;
+          margin: 0;
+padding: 30px 20px;
+color: #1e293b;
     }
+
+    h1{
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0f172a;
+    }
+    article{
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+    }
+
+    article h2{
+      color: #0d9488;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+    }
+    article p {
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+article small {
+    display: block;
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+article a {
+    display: inline-block;
+    background-color: #0d9488;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-top: 12px;
+}
+article a:hover {
+    background-color: #0f766e;
+}
+
+.new-message-btn {
+    display: inline-block;
+    background-color: #0d9488;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
   </style>
 </head>
 <body>
@@ -24,6 +79,6 @@
     <hr>
   <% }); %>
 
-  <a href="/new">Create a New Message</a>
+  <a href="/new"  class="new-message-btn">Create a New Message</a>
 </body>
 </html>
